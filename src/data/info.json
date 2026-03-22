@@ -1,0 +1,176 @@
+{
+  "personal": {
+    "name": "Bruno Augusto Ramos Pires",
+    "role": "Desenvolvedor WEB | Analista de CRM",
+    "summary": "Com mais de 10 anos de experiência em Tecnologia da Informação, dedico minha carreira a construir pontes tecnológicas. Atuo no desenvolvimento de sites, sistemas WEB escaláveis usando PHP, React / Next.js, Node.js e bancos relacionais como MySQL.\nHoje, meu grande foco está no ecossistema Oracle na G&P, criando soluções robustas e integradas para melhorar a vida dos usuários finais através de automação e excelência em código.",
+    "linkedin": "https://www.linkedin.com/in/brunoarpires/",
+    "email": "brunoa1988@gmail.com",
+    "badges": [
+      "Oracle Service Cloud",
+      "Oracle Commerce Cloud",
+      "Oracle Integration Cloud"
+    ]
+  },
+  "experiences": [
+    {
+      "id": 1,
+      "role": "Analista de CRM",
+      "company": "G&P Projetos&Sistemas",
+      "period": "Set/2023 - Atual",
+      "description": "Desenvolvimento e manutenção de soluções customizadas na plataforma Oracle RightNow (Oracle Service Cloud), incluindo criação de add-ins (JavaScript), integrações com sistemas externos via APIs REST e customização da BUI (Browser User Interface). Responsável por implementar validações de dados, automações por meio de workflows, e personalizações na interface do agente.\n\nDesenvolvimento e otimização de relatórios (Analytics Reports) com filtros dinâmicos e condições avançadas. Realizar manutenção, criação de integrações na ferramenta do OIC (Oracle Integration Cloud) e também na ferramenta do OCC (Oracle Commerce Cloud) com ajustes de layouts, customização em React de componentes no ambiente, com versionamento em Git. Análise de requisitos técnicos e sustentação de soluções em ambiente de produção.",
+      "iconType": "Briefcase"
+    },
+    {
+      "id": 2,
+      "role": "Analista de Sistemas",
+      "company": "InfinitySys",
+      "period": "Abr/2021 - Set/2023",
+      "description": "Atendimentos dos clientes, que utilizam a ferramenta de Oracle RightNow (Oracle Service Cloud), atuando pela área de Sustentação da empresa. Atendimentos em correção de falhas, customização, configuração na ferramenta e de melhorias no Oracle RightNow (Oracle Service Cloud). Desenvolvendo na ferramenta nas linguagens PHP, Javascript, HTML, CSS e banco de dados MySQL. Participação de reuniões com clientes sobre definições de alinhamentos dos chamados, atualizações e sobre dúvidas de utilização do Oracle RightNow (Oracle Service Cloud).",
+      "iconType": "Briefcase"
+    },
+    {
+      "id": 3,
+      "role": "Analista de Sistemas",
+      "company": "Universidade Metropolitana de Santos",
+      "period": "Nov/2012 - Abr/2021",
+      "description": "Fornecer suporte, manutenção e desenvolver novas funcionalidades no sistema acadêmico da faculdade UNIMES, na linguagem PHP com banco de dados em MySQL.",
+      "iconType": "Database"
+    },
+    {
+      "id": 4,
+      "role": "Desenvolvedor",
+      "company": "Treino Online",
+      "period": "Abr/2011 - Jun/2012",
+      "description": "Fornecer suporte, manutenção e desenvolver novas funcionalidades no sistema Web Treino Online na linguagem ASP. Desenvolver sites e sistemas para web na linguagem PHP com banco de dados MySQL.",
+      "iconType": "Code2"
+    },
+    {
+      "id": 5,
+      "role": "Trainee",
+      "company": "It Go Tecnologia",
+      "period": "Dez/2010 - Abr/2011",
+      "description": "Desenvolver sistemas para web na linguagem PHP com banco de dados em MySQL.",
+      "iconType": "TerminalSquare"
+    },
+    {
+      "id": 6,
+      "role": "Estagiário",
+      "company": "Digischool Tecnologia da Informação e Ensino a Distância",
+      "period": "Set/2009 - Set/2010",
+      "description": "Desenvolver sistema de ERP Educacional (Digisys) em PHP, auxiliar no projeto de cursos de e-learning para AutoCad na plataforma Sakai (Andrus Sakai) em JAVA.",
+      "iconType": "LayoutTemplate"
+    }
+  ],
+  "skills": [
+    { "name": "JavaScript", "iconType": "Braces" },
+    { "name": "PHP", "iconType": "Code2" },
+    { "name": "MySQL", "iconType": "Database" },
+    { "name": "APIs REST", "iconType": "Globe" },
+    { "name": "Oracle Service Cloud", "iconType": "Cloud" },
+    { "name": "Oracle Commerce Cloud", "iconType": "ShoppingCart" },
+    { "name": "Oracle Integration Cloud", "iconType": "Plug" },
+    { "name": "Node.js", "iconType": "Braces" },
+    { "name": "React / Next.js", "iconType": "ReactLogo" }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "Universidade Metropolitana de Santos",
+      "course": "Superior de Tecnologia em Logística",
+      "period": "Fev 2016 - Dez 2017",
+      "status": "Concluído"
+    },
+    {
+      "id": 2,
+      "institution": "Faculdade de Tecnologia Rubens Lara",
+      "course": "Processamento de Dados",
+      "period": "Jan 2007 - Jun 2010",
+      "status": "Concluído"
+    },
+    {
+      "id": 3,
+      "institution": "SENAI Antônio Souza Noschese",
+      "course": "Técnico em Redes de Comunicação",
+      "period": "Jan 2007 - Dez 2008",
+      "status": "Concluído"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "institution": "Digital Innovation One",
+      "course": "Construindo Páginas para a Internet com Bootstrap",
+      "duration": "4 horas",
+      "status": "Concluído"
+    },
+    {
+      "id": 2,
+      "institution": "Digital Innovation One",
+      "course": "Introdução ao Git e Controle de Versões",
+      "duration": "2 horas",
+      "status": "Concluído"
+    },
+    {
+      "id": 3,
+      "institution": "Digital Innovation One",
+      "course": "Introdução ao GitHub e comandos essenciais",
+      "duration": "4 horas",
+      "status": "Concluído"
+    },
+    {
+      "id": 4,
+      "institution": "Digital Innovation One",
+      "course": "Projetos Ágeis com SCRUM",
+      "duration": "2 horas",
+      "status": "Concluído"
+    },
+    {
+      "id": 5,
+      "institution": "DevMedia",
+      "course": "O que é teste unitário? Módulo I",
+      "duration": "4 horas",
+      "status": "Concluído"
+    },
+    {
+      "id": 6,
+      "institution": "DevMedia",
+      "course": "O que é teste unitário? Módulo II",
+      "duration": "4 horas",
+      "status": "Concluído"
+    },
+    {
+      "id": 7,
+      "institution": "FATEC Rubens Lara (Empresa Júnior)",
+      "course": "Minicurso de programação WEB PHP",
+      "duration": "15 horas",
+      "status": "Concluído"
+    },
+    {
+      "id": 8,
+      "institution": "Tecnoponta Treinamentos",
+      "course": "Java com Jsp e Javabeans",
+      "duration": "24 horas",
+      "status": "Concluído"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Sistema CRM Customizado",
+      "type": "Cliente",
+      "description": "Uma breve descrição sobre a solução e as tecnologias aplicadas para este negócio.",
+      "tags": ["React", "Node.js", "Oracle API"],
+      "link": "https://github.com/...",
+      "image": "/projeto-placeholder.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Meu App Pessoal (Estudos)",
+      "type": "Pessoal",
+      "description": "Projeto focado em aprender novas arquiteturas de cloud, CI/CD e testes.",
+      "tags": ["Next.js", "Tailwind", "Vercel"],
+      "link": "https://github.com/...",
+      "image": "/projeto-placeholder.jpg"
+    }
+  ]
+}
