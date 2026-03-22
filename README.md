@@ -1,4 +1,4 @@
-# Bruno Pires - Meu Protifólio
+# Bruno Pires - Meu Portifólio
 
 Portfólio profissional com estrutura modular e componentes separados.
 
