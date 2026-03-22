@@ -1,4 +1,4 @@
-# Meu Portfólio - Versão Refatorada
+# Bruno Pires - Meu Protifólio
 
 Portfólio profissional com estrutura modular e componentes separados.
 
