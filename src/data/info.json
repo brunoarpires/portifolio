@@ -62,15 +62,42 @@
     }
   ],
   "skills": [
-    { "name": "JavaScript", "iconType": "Braces" },
-    { "name": "PHP", "iconType": "Code2" },
-    { "name": "MySQL", "iconType": "Database" },
-    { "name": "APIs REST", "iconType": "Globe" },
-    { "name": "Oracle Service Cloud", "iconType": "Cloud" },
-    { "name": "Oracle Commerce Cloud", "iconType": "ShoppingCart" },
-    { "name": "Oracle Integration Cloud", "iconType": "Plug" },
-    { "name": "Node.js", "iconType": "Braces" },
-    { "name": "React / Next.js", "iconType": "ReactLogo" }
+    {
+      "name": "JavaScript",
+      "iconType": "Braces"
+    },
+    {
+      "name": "PHP",
+      "iconType": "Code2"
+    },
+    {
+      "name": "MySQL",
+      "iconType": "Database"
+    },
+    {
+      "name": "APIs REST",
+      "iconType": "Globe"
+    },
+    {
+      "name": "Oracle Service Cloud",
+      "iconType": "Cloud"
+    },
+    {
+      "name": "Oracle Commerce Cloud",
+      "iconType": "ShoppingCart"
+    },
+    {
+      "name": "Oracle Integration Cloud",
+      "iconType": "Plug"
+    },
+    {
+      "name": "Node.js",
+      "iconType": "Braces"
+    },
+    {
+      "name": "React / Next.js",
+      "iconType": "ReactLogo"
+    }
   ],
   "education": [
     {
@@ -156,21 +183,35 @@
   "projects": [
     {
       "id": 1,
-      "title": "Sistema CRM Customizado",
-      "type": "Cliente",
-      "description": "Uma breve descrição sobre a solução e as tecnologias aplicadas para este negócio.",
-      "tags": ["React", "Node.js", "Oracle API"],
-      "link": "https://github.com/...",
-      "image": "/projeto-placeholder.jpg"
+      "title": "Controle de Finanças",
+      "type": "Projeto pessoal",
+      "description": "Gestão financeira pessoal e familiar, em português: lançamentos, orçamento por categoria e leitura de NFC-e a partir da foto da nota. Funciona no celular e no computador, com modo local (no próprio aparelho) ou sincronizado na nuvem.",
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Supabase",
+        "Tailwind",
+        "Vercel"
+      ],
+      "link": "https://github.com/brunoarpires/controle-de-financas",
+      "image": "/projetos/controle-de-financas.png"
     },
     {
       "id": 2,
-      "title": "Meu App Pessoal (Estudos)",
-      "type": "Pessoal",
-      "description": "Projeto focado em aprender novas arquiteturas de cloud, CI/CD e testes.",
-      "tags": ["Next.js", "Tailwind", "Vercel"],
-      "link": "https://github.com/...",
-      "image": "/projeto-placeholder.jpg"
+      "title": "Planner Pessoal",
+      "type": "Projeto pessoal",
+      "description": "Planejamento diário em família: atividades, checklist, recorrências, pontuação, lembretes e sincronização com o Google Agenda.",
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Supabase",
+        "Google Agenda",
+        "Vercel"
+      ],
+      "link": "https://github.com/brunoarpires/planner-pessoal",
+      "image": "/projetos/planner-pessoal.png"
     }
   ]
 }
