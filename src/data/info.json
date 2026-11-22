@@ -202,7 +202,29 @@
         "Vercel"
       ],
       "link": "https://github.com/brunoarpires/controle-de-financas",
-      "image": "/projetos/controle-de-financas.png"
+      "image": "/projetos/financas-inicio.webp",
+      "gallery": [
+        {
+          "src": "/projetos/financas-inicio.webp",
+          "alt": "Tela inicial do Controle de Finanças com saldo do mês, gastos por categoria e evolução de seis meses.",
+          "label": "Início"
+        },
+        {
+          "src": "/projetos/financas-lancamentos.webp",
+          "alt": "Lista de lançamentos do Controle de Finanças, com filtros por categoria e tipo.",
+          "label": "Lançamentos"
+        },
+        {
+          "src": "/projetos/financas-leitor-nota.webp",
+          "alt": "Leitor de nota fiscal (NFC-e) do Controle de Finanças, com a foto da nota e os dados conferidos.",
+          "label": "Leitor de NFC-e"
+        },
+        {
+          "src": "/projetos/financas-orcamento.webp",
+          "alt": "Tela de orçamento mensal por categoria do Controle de Finanças, com barras de progresso.",
+          "label": "Orçamento"
+        }
+      ]
     },
     {
       "id": 2,
@@ -226,7 +248,24 @@
         "Edge Functions"
       ],
       "link": "https://github.com/brunoarpires/planner-pessoal",
-      "image": "/projetos/planner-pessoal.png"
+      "image": "/projetos/planner-dia.webp",
+      "gallery": [
+        {
+          "src": "/projetos/planner-dia.webp",
+          "alt": "Tela do dia no Planner Pessoal, com checklist, pontos e atividades da Família Silva (dados fictícios).",
+          "label": "Dia e checklist"
+        },
+        {
+          "src": "/projetos/planner-recorrencia.webp",
+          "alt": "Formulário de nova atividade no Planner Pessoal, com repetição diária e término sem fim.",
+          "label": "Recorrência"
+        },
+        {
+          "src": "/projetos/planner-ranking.webp",
+          "alt": "Ranking mensal da família no Planner Pessoal, com pontos por pessoa e por categoria.",
+          "label": "Ranking do mês"
+        }
+      ]
     }
   ]
 }

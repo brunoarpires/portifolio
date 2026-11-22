@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { FolderGit2, Github, ChevronDown } from 'lucide-react';
 import type { Project } from '@/types/portfolio';
+import { ProjectCarousel } from '@/components/ProjectCarousel';
 
 interface ProjectsProps {
   projects: Project[];
@@ -24,16 +24,10 @@ export function Projects({ projects }: ProjectsProps) {
             key={proj.id}
             className="group relative bg-[#0a0a0a] border border-slate-800 rounded-2xl overflow-hidden hover:border-sky-500/50 transition-all duration-300 shadow-xl flex flex-col h-full"
           >
-            <div className="w-full h-48 md:h-56 bg-slate-800/50 relative overflow-hidden">
-              <Image
-                src={proj.image}
-                alt={`Captura de tela do ${proj.title}`}
-                fill
-                className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                quality={95}
-              />
-            </div>
+            <ProjectCarousel
+              title={proj.title}
+              slides={proj.gallery && proj.gallery.length > 0 ? proj.gallery : [{ src: proj.image, alt: `Captura de tela do ${proj.title}` }]}
+            />
 
             <div className="p-6 flex-1 flex flex-col">
               <div className="flex justify-between items-start gap-3 mb-4">
