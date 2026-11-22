@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Briefcase, User, Code2, GraduationCap, FolderGit2, Menu, X } from 'lucide-react';
+import { Logo } from '@/components/Logo';
 
 interface HeaderProps {
   isMobileMenuOpen: boolean;
@@ -50,9 +51,12 @@ export function Header({ isMobileMenuOpen, onMobileMenuToggle, onNavClick, mostr
       <div className="relative z-10 flex flex-col min-h-full">
         {/* Barra superior com logo e botão fechar - sempre visível e clicável */}
         <div className="flex justify-between items-center p-5 border-b border-white/10 shrink-0">
-          <span className="text-xl font-bold tracking-tighter text-white">
-            BRUNO<span className="text-sky-500">PIRES</span>
-          </span>
+          <Logo
+            withWordmark
+            wordmarkClassName="inline"
+            onClick={onNavClick}
+            markClassName="h-8 w-auto"
+          />
           <button
             onClick={onMobileMenuToggle}
             className="p-2 -m-2 text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors"
@@ -99,9 +103,7 @@ export function Header({ isMobileMenuOpen, onMobileMenuToggle, onNavClick, mostr
     <>
       <header className="fixed top-0 w-full p-5 bg-[#0a0a0a]/70 backdrop-blur-xl z-50 border-b border-white/5 transition-all">
         <nav className="flex justify-between items-center max-w-6xl mx-auto px-4">
-          <div className="text-xl font-bold tracking-tighter text-white">
-            BRUNO<span className="text-sky-500">PIRES</span>
-          </div>
+          <Logo withWordmark onClick={onNavClick} markClassName="h-8 w-auto sm:h-9" />
 
           {/* Desktop Nav */}
           <div className="hidden md:flex gap-8">
