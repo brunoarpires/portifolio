@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { FolderGit2, Github } from 'lucide-react';
+import { FolderGit2, Github, ChevronDown } from 'lucide-react';
 import type { Project } from '@/types/portfolio';
 
 interface ProjectsProps {
@@ -51,9 +51,23 @@ export function Projects({ projects }: ProjectsProps) {
                 </span>
               </div>
 
-              <p className="text-slate-400 leading-relaxed text-sm mb-6 flex-1">{proj.description}</p>
+              <p className="text-slate-400 leading-relaxed text-sm mb-4">{proj.description}</p>
 
-              <div className="flex flex-wrap gap-2 mb-6">
+              {proj.highlights && proj.highlights.length > 0 && (
+                <details className="mb-6 rounded-xl border border-slate-800 bg-white/[0.02] px-4 py-3 group/detalhes">
+                  <summary className="cursor-pointer text-sm font-medium text-sky-400 hover:text-sky-300 flex items-center justify-between gap-2 list-none [&::-webkit-details-marker]:hidden [&::marker]:hidden">
+                    Detalhes técnicos
+                    <ChevronDown className="w-4 h-4 shrink-0 transition-transform duration-200 group-open/detalhes:rotate-180" />
+                  </summary>
+                  <ul className="mt-3 space-y-2.5 text-sm text-slate-400 leading-relaxed list-disc pl-4">
+                    {proj.highlights.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+
+              <div className="flex flex-wrap gap-2 mb-6 mt-auto">
                 {proj.tags.map((tag) => (
                   <span
                     key={tag}
