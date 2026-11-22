@@ -37,6 +37,12 @@ export interface Course {
   status: string;
 }
 
+export interface ProjectImage {
+  src: string;
+  alt: string;
+  label?: string;
+}
+
 export interface Project {
   id: number;
   title: string;
@@ -46,6 +52,7 @@ export interface Project {
   tags: string[];
   link: string;
   image: string;
+  gallery?: ProjectImage[];
 }
 
 export interface PortfolioData {
