@@ -62,15 +62,42 @@
     }
   ],
   "skills": [
-    { "name": "JavaScript", "iconType": "Braces" },
-    { "name": "PHP", "iconType": "Code2" },
-    { "name": "MySQL", "iconType": "Database" },
-    { "name": "APIs REST", "iconType": "Globe" },
-    { "name": "Oracle Service Cloud", "iconType": "Cloud" },
-    { "name": "Oracle Commerce Cloud", "iconType": "ShoppingCart" },
-    { "name": "Oracle Integration Cloud", "iconType": "Plug" },
-    { "name": "Node.js", "iconType": "Braces" },
-    { "name": "React / Next.js", "iconType": "ReactLogo" }
+    {
+      "name": "JavaScript",
+      "iconType": "Braces"
+    },
+    {
+      "name": "PHP",
+      "iconType": "Code2"
+    },
+    {
+      "name": "MySQL",
+      "iconType": "Database"
+    },
+    {
+      "name": "APIs REST",
+      "iconType": "Globe"
+    },
+    {
+      "name": "Oracle Service Cloud",
+      "iconType": "Cloud"
+    },
+    {
+      "name": "Oracle Commerce Cloud",
+      "iconType": "ShoppingCart"
+    },
+    {
+      "name": "Oracle Integration Cloud",
+      "iconType": "Plug"
+    },
+    {
+      "name": "Node.js",
+      "iconType": "Braces"
+    },
+    {
+      "name": "React / Next.js",
+      "iconType": "ReactLogo"
+    }
   ],
   "education": [
     {
@@ -156,21 +183,50 @@
   "projects": [
     {
       "id": 1,
-      "title": "Sistema CRM Customizado",
-      "type": "Cliente",
-      "description": "Uma breve descrição sobre a solução e as tecnologias aplicadas para este negócio.",
-      "tags": ["React", "Node.js", "Oracle API"],
-      "link": "https://github.com/...",
-      "image": "/projeto-placeholder.jpg"
+      "title": "Controle de Finanças",
+      "type": "Projeto pessoal",
+      "description": "SPA/PWA de gestão financeira pessoal e familiar, em português (valores em R$ e datas dd/mm/aaaa). Funciona no celular e no computador: no modo local os dados ficam só no aparelho (IndexedDB); no modo família há login, Postgres com RLS e sincronização offline-first.",
+      "highlights": [
+        "Arquitetura: React 19, TypeScript, Vite e Tailwind no front. No modo nuvem, autenticação e banco ficam no Supabase (Auth + Postgres com Row Level Security). Functions serverless na Vercel expõem /api/nfce e /api/ocr.",
+        "Leitura de NFC-e: o app lê o QR Code com jsQR, consulta a página pública da SEFAZ em /api/nfce (HTML parseado, com allowlist de hosts para evitar SSRF) e, se a consulta falhar, cai para OCR com Tesseract.js no cliente — com um fallback opcional via /api/ocr.",
+        "Modo offline e sincronização: Dexie/IndexedDB guarda lançamentos, orçamentos e uma fila de pendências. Sem internet o app continua usável; ao reconectar, a fila sobe e o cliente baixa o que mudou na nuvem.",
+        "Orçamento mensal por categoria, com barras de progresso e alerta ao se aproximar do limite, além de importação de planilha (CSV/Excel) e lançamentos parcelados.",
+        "Parsers de comprovante (PIX, TED, boleto e maquininha), com testes para layouts Stone e Pix do C6 Bank, e testes do parser SEFAZ. A suíte roda no test runner do Node (tsx --test); há também scripts de e2e (API, modo família e capturas com Puppeteer) e testes de RLS em SQL."
+      ],
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Supabase",
+        "Tailwind",
+        "Vercel"
+      ],
+      "link": "https://github.com/brunoarpires/controle-de-financas",
+      "image": "/projetos/controle-de-financas.png"
     },
     {
       "id": 2,
-      "title": "Meu App Pessoal (Estudos)",
-      "type": "Pessoal",
-      "description": "Projeto focado em aprender novas arquiteturas de cloud, CI/CD e testes.",
-      "tags": ["Next.js", "Tailwind", "Vercel"],
-      "link": "https://github.com/...",
-      "image": "/projeto-placeholder.jpg"
+      "title": "Planner Pessoal",
+      "type": "Projeto pessoal",
+      "description": "PWA de planejamento diário em família: atividades, checklist, recorrências, pontuação e ranking. Cada pessoa tem o próprio login e configura o início e a duração do dia. Dá para compartilhar tarefas, receber lembretes no celular (Web Push) e sincronizar nos dois sentidos com o Google Agenda.",
+      "highlights": [
+        "Arquitetura: React 19, TypeScript, Vite e Tailwind no front; Supabase (Auth e Postgres com Row Level Security) e Edge Functions em Deno no back.",
+        "Motor de recorrência com horizonte de 60 dias (gera ocorrências até hoje+60, inclusive em séries sem data de término). Edição e exclusão em “só esta” ou “esta e as próximas”, via as RPCs mover_proximas e excluir_proximas.",
+        "Atividades compartilhadas: a RPC criar_compartilhada cria uma cópia para cada participante; triggers no Postgres propagam alterações comuns (título, horário, duração) e conferem o limite de horas do dia de cada pessoa.",
+        "Edge Function google-sync: envia atividades pendentes para o Google Agenda e importa eventos da agenda (hoje até +14 dias), ignorando os que o próprio app criou. Os eventos importados são gravados em lote (upsert).",
+        "Lembretes: a Edge Function lembretes envia Web Push (VAPID) e é disparada a cada 5 minutos pelo pg_cron. Quando o canal inclui e-mail, o lembrete usa os reminders do próprio Google Agenda.",
+        "Pontuação (10 pts por atividade feita, +5 se “fiz bem”; −5 ou −2 se não feita, conforme o motivo) e ranking mensal da família (RPC ranking_mensal). O motor de regras tem testes em script Node (test-regras.mjs)."
+      ],
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Supabase",
+        "Google Agenda",
+        "Edge Functions"
+      ],
+      "link": "https://github.com/brunoarpires/planner-pessoal",
+      "image": "/projetos/planner-pessoal.png"
     }
   ]
 }

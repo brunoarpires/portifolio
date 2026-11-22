@@ -18,8 +18,7 @@ export default function Home() {
   const { personal, experiences, skills, education, courses, projects } = data;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Variável de Controle: Mude para 'true' quando quiser exibir a sessão de Projetos!
-  const mostrarProjetos = false;
+  const mostrarProjetos = true;
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
