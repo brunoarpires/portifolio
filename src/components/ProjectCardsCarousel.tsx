@@ -147,29 +147,20 @@ export function ProjectCardsCarousel({ resetKey, children }: ProjectCardsCarouse
       </div>
 
       {showControls && (
-        <>
+        <div className="mt-6 flex items-center justify-center gap-3 sm:gap-4">
           <button
             type="button"
             onClick={() => goTo(page - 1)}
             disabled={atStart}
             aria-label="Projetos anteriores"
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 sm:-translate-x-3 z-20 p-2 rounded-full bg-black/60 text-white hover:bg-black/80 border border-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 disabled:opacity-30 disabled:pointer-events-none"
+            className="inline-flex items-center justify-center h-11 w-11 shrink-0 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 hover:border-sky-500/50 hover:text-sky-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 disabled:opacity-40 disabled:bg-transparent disabled:border-slate-800 disabled:text-slate-600 disabled:hover:bg-transparent disabled:pointer-events-none"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <button
-            type="button"
-            onClick={() => goTo(page + 1)}
-            disabled={atEnd}
-            aria-label="Próximos projetos"
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 sm:translate-x-3 z-20 p-2 rounded-full bg-black/60 text-white hover:bg-black/80 border border-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 disabled:opacity-30 disabled:pointer-events-none"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
 
-          <div className="mt-5 flex flex-col items-center gap-2">
-            <p className="sr-only" aria-live="polite">
-              {`Grupo ${page + 1} de ${pageCount}`}
+          <div className="flex flex-col items-center justify-center gap-1.5 min-w-[4.5rem]">
+            <p className="text-sm tabular-nums font-medium text-slate-300" aria-live="polite">
+              {`${page + 1} / ${pageCount}`}
             </p>
             <div className="flex items-center gap-1.5" role="tablist" aria-label="Grupos de projetos">
               {Array.from({ length: pageCount }, (_, index) => (
@@ -181,14 +172,24 @@ export function ProjectCardsCarousel({ resetKey, children }: ProjectCardsCarouse
                   aria-label={`Ir para o grupo ${index + 1} de ${pageCount}`}
                   aria-controls={baseId}
                   onClick={() => goTo(index)}
-                  className={`h-2 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 ${
+                  className={`h-2 min-h-2 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 ${
                     index === page ? 'w-5 bg-sky-400' : 'w-2 bg-white/30 hover:bg-white/60'
                   }`}
                 />
               ))}
             </div>
           </div>
-        </>
+
+          <button
+            type="button"
+            onClick={() => goTo(page + 1)}
+            disabled={atEnd}
+            aria-label="Próximos projetos"
+            className="inline-flex items-center justify-center h-11 w-11 shrink-0 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 hover:border-sky-500/50 hover:text-sky-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 disabled:opacity-40 disabled:bg-transparent disabled:border-slate-800 disabled:text-slate-600 disabled:hover:bg-transparent disabled:pointer-events-none"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
       )}
     </div>
   );
