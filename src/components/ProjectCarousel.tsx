@@ -2,7 +2,8 @@
 
 import { useCallback, useId, useRef, useState } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { ImageLightbox } from '@/components/ImageLightbox';
 
 export interface CarouselSlide {
   src: string;
@@ -19,6 +20,8 @@ export function ProjectCarousel({ title, slides }: ProjectCarouselProps) {
   const baseId = useId();
   const [index, setIndex] = useState(0);
   const pointerStart = useRef<{ x: number; y: number; id: number } | null>(null);
+  const didSwipe = useRef(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const count = slides.length;
   const goTo = useCallback(
     (next: number) => {
@@ -43,8 +46,17 @@ export function ProjectCarousel({ title, slides }: ProjectCarouselProps) {
     const dx = e.clientX - start.x;
     const dy = e.clientY - start.y;
     if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+    didSwipe.current = true;
     if (dx < 0) next();
     else prev();
+  };
+
+  const openLightbox = () => {
+    if (didSwipe.current) {
+      didSwipe.current = false;
+      return;
+    }
+    setLightboxOpen(true);
   };
 
   const current = slides[index];
@@ -68,17 +80,22 @@ export function ProjectCarousel({ title, slides }: ProjectCarouselProps) {
         } else if (e.key === 'End') {
           e.preventDefault();
           goTo(count - 1);
+        } else if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) {
+          e.preventDefault();
+          setLightboxOpen(true);
         }
       }}
       className="relative outline-none focus-visible:ring-2 focus-visible:ring-sky-500/70 focus-visible:ring-inset"
     >
       <div
-        className="relative w-full aspect-[3/2] bg-slate-900/80 overflow-hidden"
+        className="group/slide relative w-full aspect-[3/2] bg-slate-900/80 overflow-hidden cursor-zoom-in"
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
         onPointerCancel={() => {
           pointerStart.current = null;
         }}
+        onClick={openLightbox}
+        title="Clique para ampliar"
       >
         {slides.map((slide, i) => (
           <div
@@ -105,6 +122,11 @@ export function ProjectCarousel({ title, slides }: ProjectCarouselProps) {
         ))}
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/55 to-transparent" />
+
+        <div className="pointer-events-none absolute top-2 left-2 z-10 flex items-center gap-1.5 rounded-full bg-black/55 text-white px-2 py-1 border border-white/10 opacity-90 md:opacity-0 md:group-hover/slide:opacity-100 transition-opacity">
+          <ZoomIn className="w-3.5 h-3.5" aria-hidden="true" />
+          <span className="text-[11px] font-medium">Ampliar</span>
+        </div>
 
         {count > 1 && (
           <>
@@ -161,6 +183,16 @@ export function ProjectCarousel({ title, slides }: ProjectCarouselProps) {
             ))}
           </div>
         </div>
+      )}
+
+      {lightboxOpen && (
+        <ImageLightbox
+          title={title}
+          slides={slides}
+          index={index}
+          onIndexChange={setIndex}
+          onClose={() => setLightboxOpen(false)}
+        />
       )}
     </div>
   );
