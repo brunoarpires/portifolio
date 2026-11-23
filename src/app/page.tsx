@@ -15,7 +15,7 @@ import { Footer } from '@/components/Footer';
 const data = portfolioData as PortfolioData;
 
 export default function Home() {
-  const { personal, experiences, skills, education, courses, projects, projectCategories } = data;
+  const { personal, experiences, skills, education, courses, projects, projectSubcategories } = data;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const mostrarProjetos = true;
@@ -55,7 +55,7 @@ export default function Home() {
         <About personal={personal} skills={skills} />
         <ExperienceSection experiences={experiences} />
         <Education education={education} courses={courses} />
-        {mostrarProjetos && <Projects projects={projects} categories={projectCategories} />}
+        {mostrarProjetos && <Projects projects={projects} subcategories={projectSubcategories} />}
         <Contact personal={personal} />
       </main>
 

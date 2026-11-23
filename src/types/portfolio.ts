@@ -43,7 +43,7 @@ export interface ProjectImage {
   label?: string;
 }
 
-export interface ProjectCategory {
+export interface ProjectSubcategory {
   label: string;
   description?: string;
 }
@@ -51,10 +51,8 @@ export interface ProjectCategory {
 export interface Project {
   id: number;
   title: string;
-  /** Categoria de topo (ex.: "Projetos pessoais"). */
-  category: string;
-  /** Subcategoria opcional para agrupar projetos parecidos (ex.: "Apps web / PWA"). */
-  subcategory?: string;
+  /** Subcategoria dentro de Projetos (ex.: "Pessoais", "Freelance", "Empresa"). */
+  subcategory: string;
   type: string;
   description: string;
   highlights?: string[];
@@ -70,6 +68,6 @@ export interface PortfolioData {
   skills: Skill[];
   education: Education[];
   courses: Course[];
-  projectCategories?: ProjectCategory[];
+  projectSubcategories?: ProjectSubcategory[];
   projects: Project[];
 }
