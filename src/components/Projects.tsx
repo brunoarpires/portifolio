@@ -4,6 +4,7 @@ import { useId, useMemo, useState } from 'react';
 import { FolderGit2, Github, ChevronDown } from 'lucide-react';
 import type { Project, ProjectSubcategory } from '@/types/portfolio';
 import { ProjectCarousel } from '@/components/ProjectCarousel';
+import { ProjectCardsCarousel } from '@/components/ProjectCardsCarousel';
 
 interface ProjectsProps {
   projects: Project[];
@@ -54,7 +55,7 @@ function organizeSubcategories(projects: Project[], catalog: ProjectSubcategory[
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="group relative bg-[#0a0a0a] border border-slate-800 rounded-2xl overflow-hidden hover:border-sky-500/50 transition-all duration-300 shadow-xl flex flex-col h-full">
+    <article className="group relative bg-[#0a0a0a] border border-slate-800 rounded-2xl overflow-hidden hover:border-sky-500/50 transition-all duration-300 shadow-xl flex flex-col h-full w-full">
       <ProjectCarousel
         title={project.title}
         slides={
@@ -149,7 +150,7 @@ export function Projects({ projects, subcategories = [] }: ProjectsProps) {
   };
 
   return (
-    <section id="projects" className="py-24 px-6 max-w-5xl w-full border-t border-slate-800/50">
+    <section id="projects" className="py-24 px-6 max-w-5xl 2xl:max-w-7xl w-full border-t border-slate-800/50">
       <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center flex items-center justify-center gap-3">
         <FolderGit2 className="text-sky-500 w-8 h-8" /> Projetos
       </h2>
@@ -205,11 +206,12 @@ export function Projects({ projects, subcategories = [] }: ProjectsProps) {
         role="tabpanel"
         id={`${baseId}-panel`}
         aria-labelledby={showFilters ? `${baseId}-tab-${filters.findIndex((item) => item.label === selected)}` : undefined}
-        className="grid md:grid-cols-2 gap-8"
       >
-        {visibleProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+        <ProjectCardsCarousel resetKey={selected}>
+          {visibleProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </ProjectCardsCarousel>
       </div>
     </section>
   );

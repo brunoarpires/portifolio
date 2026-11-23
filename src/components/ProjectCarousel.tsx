@@ -70,28 +70,41 @@ export function ProjectCarousel({ title, slides }: ProjectCarouselProps) {
       onKeyDown={(e) => {
         if (e.key === 'ArrowLeft') {
           e.preventDefault();
+          e.stopPropagation();
           prev();
         } else if (e.key === 'ArrowRight') {
           e.preventDefault();
+          e.stopPropagation();
           next();
         } else if (e.key === 'Home') {
           e.preventDefault();
+          e.stopPropagation();
           goTo(0);
         } else if (e.key === 'End') {
           e.preventDefault();
+          e.stopPropagation();
           goTo(count - 1);
         } else if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) {
           e.preventDefault();
           setLightboxOpen(true);
         }
       }}
-      className="relative outline-none focus-visible:ring-2 focus-visible:ring-sky-500/70 focus-visible:ring-inset"
+      className="relative outline-none focus-visible:ring-2 focus-visible:ring-sky-500/70 focus-visible:ring-inset touch-pan-y"
+      onPointerDown={(e) => e.stopPropagation()}
     >
       <div
-        className="group/slide relative w-full aspect-[3/2] bg-slate-900/80 overflow-hidden cursor-zoom-in"
-        onPointerDown={onPointerDown}
-        onPointerUp={onPointerUp}
-        onPointerCancel={() => {
+        className="group/slide relative w-full aspect-[3/2] bg-slate-900/80 overflow-hidden cursor-zoom-in touch-pan-y"
+        onPointerDown={(e) => {
+          e.stopPropagation();
+          onPointerDown(e);
+        }}
+        onPointerMove={(e) => e.stopPropagation()}
+        onPointerUp={(e) => {
+          e.stopPropagation();
+          onPointerUp(e);
+        }}
+        onPointerCancel={(e) => {
+          e.stopPropagation();
           pointerStart.current = null;
         }}
         onClick={openLightbox}
