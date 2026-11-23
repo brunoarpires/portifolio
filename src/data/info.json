@@ -180,10 +180,18 @@
       "status": "Concluído"
     }
   ],
+  "projectCategories": [
+    {
+      "label": "Projetos pessoais",
+      "description": "Apps e ferramentas que desenvolvi no tempo livre, com código aberto no GitHub."
+    }
+  ],
   "projects": [
     {
       "id": 1,
       "title": "Controle de Finanças",
+      "category": "Projetos pessoais",
+      "subcategory": "Apps web / PWA",
       "type": "Projeto pessoal",
       "description": "SPA/PWA de gestão financeira pessoal e familiar, em português (valores em R$ e datas dd/mm/aaaa). Funciona no celular e no computador: no modo local os dados ficam só no aparelho (IndexedDB); no modo família há login, Postgres com RLS e sincronização offline-first.",
       "highlights": [
@@ -229,6 +237,8 @@
     {
       "id": 2,
       "title": "Planner Pessoal",
+      "category": "Projetos pessoais",
+      "subcategory": "Apps web / PWA",
       "type": "Projeto pessoal",
       "description": "PWA de planejamento diário em família: atividades, checklist, recorrências, pontuação e ranking. Cada pessoa tem o próprio login e configura o início e a duração do dia. Dá para compartilhar tarefas, receber lembretes no celular (Web Push) e sincronizar nos dois sentidos com o Google Agenda.",
       "highlights": [
