@@ -29,7 +29,7 @@ export function Logo({
   withWordmark = false,
   className = '',
   markClassName = 'h-8 w-auto',
-  wordmarkClassName = 'hidden lg:inline',
+  wordmarkClassName = 'inline',
   onClick,
 }: LogoProps) {
   return (
@@ -42,7 +42,7 @@ export function Logo({
       <Mark className={markClassName} />
       {withWordmark && (
         <span className={`${wordmarkClassName} text-[15px] font-medium tracking-wide text-slate-300 group-hover:text-white transition-colors leading-none`}>
-          brunopires.dev.br
+          Bruno Pires
         </span>
       )}
     </a>
