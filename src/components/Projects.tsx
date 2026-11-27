@@ -157,13 +157,9 @@ export function Projects({ projects, subcategories = [] }: ProjectsProps) {
 
   return (
     <section id="projects" className="py-24 px-6 max-w-5xl 2xl:max-w-7xl w-full border-t border-slate-800/50">
-      <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center flex items-center justify-center gap-3">
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-10 text-center flex items-center justify-center gap-3">
         <FolderGit2 className="text-sky-500 w-8 h-8" /> Projetos
       </h2>
-      <p className="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
-        Trabalho com código aberto no GitHub, organizado em subcategorias. Hoje estão os projetos pessoais; outras
-        subcategorias entram conforme o portfólio cresce.
-      </p>
 
       {showFilters && (
         <div
