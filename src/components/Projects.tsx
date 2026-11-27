@@ -69,10 +69,9 @@ function ProjectCard({ project }: { project: Project }) {
       />
 
       <div className="p-6 flex-1 flex flex-col">
-        <div className="flex justify-between items-start gap-3 mb-4">
-          <h3 className="font-bold text-xl text-slate-200 group-hover:text-sky-400 transition-colors">{project.title}</h3>
+        <div className="flex flex-col items-start gap-2 mb-4">
           <span
-            className={`shrink-0 px-3 py-1 text-xs rounded-full font-medium ${
+            className={`px-3 py-1 text-xs rounded-full font-medium ${
               project.type === 'Cliente'
                 ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20'
                 : 'bg-sky-500/10 text-sky-400 border border-sky-500/20'
@@ -80,6 +79,7 @@ function ProjectCard({ project }: { project: Project }) {
           >
             {project.type}
           </span>
+          <h3 className="font-bold text-xl text-slate-200 group-hover:text-sky-400 transition-colors w-full">{project.title}</h3>
         </div>
 
         <p className="text-slate-400 leading-relaxed text-sm mb-4">{project.description}</p>
