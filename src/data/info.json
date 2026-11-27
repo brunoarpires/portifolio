@@ -192,18 +192,21 @@
       "title": "Controle de Finanças",
       "subcategory": "Pessoais",
       "type": "Projeto pessoal",
-      "description": "SPA/PWA de gestão financeira pessoal e familiar, em português (valores em R$ e datas dd/mm/aaaa). Funciona no celular e no computador: no modo local os dados ficam só no aparelho (IndexedDB); no modo família há login, Postgres com RLS e sincronização offline-first.",
+      "description": "App para organizar o dinheiro da casa: ver quanto entra e sai, definir um orçamento por categoria e lançar gastos a partir de notas e comprovantes. Funciona no celular e no computador, instala na tela inicial como um aplicativo e continua funcionando mesmo sem internet. Pode ficar só neste aparelho ou ser compartilhado com a família — e há também um perfil separado para a empresa.",
       "highlights": [
-        "Arquitetura: React 19, TypeScript, Vite e Tailwind no front. No modo nuvem, autenticação e banco ficam no Supabase (Auth + Postgres com Row Level Security). Functions serverless na Vercel expõem /api/nfce e /api/ocr.",
-        "Leitura de NFC-e: o app lê o QR Code com jsQR, consulta a página pública da SEFAZ em /api/nfce (HTML parseado, com allowlist de hosts para evitar SSRF) e, se a consulta falhar, cai para OCR com Tesseract.js no cliente — com um fallback opcional via /api/ocr.",
-        "Modo offline e sincronização: Dexie/IndexedDB guarda lançamentos, orçamentos e uma fila de pendências. Sem internet o app continua usável; ao reconectar, a fila sobe e o cliente baixa o que mudou na nuvem.",
-        "Orçamento mensal por categoria, com barras de progresso e alerta ao se aproximar do limite, além de importação de planilha (CSV/Excel) e lançamentos parcelados.",
-        "Parsers de comprovante (PIX, TED, boleto e maquininha), com testes para layouts Stone e Pix do C6 Bank, e testes do parser SEFAZ. A suíte roda no test runner do Node (tsx --test); há também scripts de e2e (API, modo família e capturas com Puppeteer) e testes de RLS em SQL."
+        "Stack (v1.1.0): React 19.3, TypeScript 6, Vite 8 e Tailwind CSS 3.4 no front; Dexie 4 (IndexedDB) e vite-plugin-pwa 2 (Workbox, registerType autoUpdate). Gráficos com Recharts; importação de planilha com SheetJS (xlsx). Lint com oxlint. Exige Node.js 20+.",
+        "Modo nuvem (família/empresa): Supabase Auth e Postgres com Row Level Security (@supabase/supabase-js 2); fotos no bucket privado notas. A mesma pessoa pode participar de vários perfis e trocar entre eles. Papéis administrador/membro são aplicados no servidor. Sem as variáveis do Supabase, o app sobe só no modo local.",
+        "Sincronização offline-first: lançamentos, orçamentos e uma fila de pendências ficam no Dexie. Sem rede o app continua usável; ao reconectar, a fila faz upsert na nuvem. Edições locais ainda não enviadas não são sobrescritas no download; se duas pessoas editam o mesmo item offline, vale a última gravação na nuvem. Exclusões são lógicas (campo excluido).",
+        "Leitura de NFC-e e comprovantes: jsQR lê o QR Code; a Vercel Function /api/nfce (até 20s) consulta a página pública da SEFAZ com allowlist de hosts (prevenção de SSRF). Se a consulta falhar, OCR no cliente com tesseract.js 7 (detecção de rotação). A function /api/ocr (OCR.space) só entra se OCR_SPACE_API_KEY estiver no servidor. CNPJ pela BrasilAPI. Sempre há tela de revisão antes de salvar. Parsers de Pix (inclusive o layout Pix Cobrança), TED, boleto e maquininhas Stone/C6; o app sugere a forma de pagamento. A v1.1.0 também inclui conta Pix e VR - Ticket (titular por integrante e saldo no Início).",
+        "Segurança: trava local com WebAuthn (autenticador de plataforma neste aparelho — não é login sem senha na nuvem e a chave não sincroniza entre dispositivos). No modo nuvem, RLS no Postgres e Storage privado.",
+        "Orçamento mensal por categoria, com alerta ao chegar a 80% e ao estourar; lançamentos parcelados (2 a 48); backup em JSON (com fotos) e importação CSV/Excel.",
+        "Testes e deploy: a suíte npm test roda no runner tsx --test (tests/*.test.ts: comprovantes, parser SEFAZ, Pix/VR e formas de pagamento) — não é Vitest. Há scripts e2e com Puppeteer (API e modo família) e testes de RLS em SQL. O front e as Functions /api/nfce e /api/ocr são publicados na Vercel (build Vite, pasta dist); a cada git push o site atualiza."
       ],
       "tags": [
         "React",
         "TypeScript",
         "Vite",
+        "PWA",
         "Supabase",
         "Tailwind",
         "Vercel"
@@ -238,19 +241,21 @@
       "title": "Planner Pessoal",
       "subcategory": "Pessoais",
       "type": "Projeto pessoal",
-      "description": "PWA de planejamento diário em família: atividades, checklist, recorrências, pontuação e ranking. Cada pessoa tem o próprio login e configura o início e a duração do dia. Dá para compartilhar tarefas, receber lembretes no celular (Web Push) e sincronizar nos dois sentidos com o Google Agenda.",
+      "description": "App para planejar o dia em família: tarefas, checklist, rotinas que se repetem, pontuação e ranking do mês. Cada pessoa tem o próprio login e escolhe quando o dia começa e termina. Dá para compartilhar atividades, receber lembretes no celular e sincronizar nos dois sentidos com o Google Agenda. Funciona no celular e no computador e instala na tela inicial como um aplicativo. Para carregar e gravar as atividades é preciso estar conectado.",
       "highlights": [
-        "Arquitetura: React 19, TypeScript, Vite e Tailwind no front; Supabase (Auth e Postgres com Row Level Security) e Edge Functions em Deno no back.",
-        "Motor de recorrência com horizonte de 60 dias (gera ocorrências até hoje+60, inclusive em séries sem data de término). Edição e exclusão em “só esta” ou “esta e as próximas”, via as RPCs mover_proximas e excluir_proximas.",
-        "Atividades compartilhadas: a RPC criar_compartilhada cria uma cópia para cada participante; triggers no Postgres propagam alterações comuns (título, horário, duração) e conferem o limite de horas do dia de cada pessoa.",
-        "Edge Function google-sync: envia atividades pendentes para o Google Agenda e importa eventos da agenda (hoje até +14 dias), ignorando os que o próprio app criou. Os eventos importados são gravados em lote (upsert).",
-        "Lembretes: a Edge Function lembretes envia Web Push (VAPID) e é disparada a cada 5 minutos pelo pg_cron. Quando o canal inclui e-mail, o lembrete usa os reminders do próprio Google Agenda.",
-        "Pontuação (10 pts por atividade feita, +5 se “fiz bem”; −5 ou −2 se não feita, conforme o motivo) e ranking mensal da família (RPC ranking_mensal). O motor de regras tem testes em script Node (test-regras.mjs)."
+        "Stack (v1.1.0): React 19.3, TypeScript 6, Vite 8, Tailwind CSS 3.4 e vite-plugin-pwa 2 (Workbox, registerType autoUpdate e o script push-sw.js para Web Push). Back-end no Supabase: Auth, Postgres com Row Level Security, Edge Functions em Deno e pg_cron. Cliente @supabase/supabase-js 2. Não há modo 100% offline: é preciso login e rede para carregar e gravar. Exige Node.js 20+.",
+        "Família: uma conta participa de uma família. O convite usa código de 8 caracteres ou o link ?convite=. As políticas de RLS garantem que cada pessoa só lê dados da própria família. Tarefas compartilhadas: a RPC criar_compartilhada cria uma cópia para cada participante; triggers no Postgres propagam os campos comuns (título, horário, duração etc.) e conferem o limite de horas do dia de cada um.",
+        "Motor de recorrência: a cada X horas, diária, semanal, mensal ou anual, com data de término, quantidade ou sem fim. O servidor materializa as ocorrências numa janela móvel de 60 dias. Edição e exclusão em “só esta” ou “esta e as próximas” (inclusive mudança de data) via as RPCs mover_proximas e excluir_proximas.",
+        "Google Agenda: a Edge Function google-sync envia atividades pendentes e importa eventos de hoje até +14 dias, ignorando os que o próprio app criou (propriedade privada plannerId) e fazendo upsert em lote. O token OAuth fica só no servidor (tabela google_tokens). Em Ajustes, a v1.1.0 oferece limpeza manual de eventos órfãos — só os criados pelo planner — com confirmação. A sincronização roda ao abrir o app, ao voltar para a aba, alguns segundos depois de editar e no botão Sincronizar agora.",
+        "Lembretes: a Edge Function lembretes envia Web Push (VAPID) e é disparada pelo pg_cron a cada 5 minutos (expressão */5 * * * *). O canal “e-mail” usa os reminders do próprio Google Agenda; o app não envia e-mail transacional. No fim do dia, há aviso 30 minutos antes e no horário de fechamento se o checklist ainda estiver aberto.",
+        "Pontuação, aplicada no checklist: +10 se a atividade foi feita, +5 extras se a pessoa marcou “fiz bem”; −5 ou −2 se não foi feita, conforme o motivo. O ranking mensal da família vem da RPC ranking_mensal. A v1.1.0 adiciona a aba Avisos (checklist atrasado, órfãos na Agenda e erro do Google) com contador de não lidos; o estado lido fica na tabela avisos_lidos, com RLS por usuário.",
+        "Testes e deploy: npm test executa scripts/test-regras.mjs, scripts/test-google-orfaos.mjs e scripts/test-avisos.mjs (não é Vitest). O front é publicado na Vercel (build Vite, pasta dist); as Edge Functions e o cron ficam no Supabase. A cada git push o site atualiza."
       ],
       "tags": [
         "React",
         "TypeScript",
         "Vite",
+        "PWA",
         "Supabase",
         "Google Agenda",
         "Edge Functions"
