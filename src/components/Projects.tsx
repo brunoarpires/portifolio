@@ -21,6 +21,9 @@ interface SubcategoryGroup {
 const TODOS = 'Todos';
 const FALLBACK_SUBCATEGORY = 'Outros';
 
+const PWA_NOTA =
+  'PWA (Progressive Web App) é um site que você instala na tela inicial pelo próprio navegador, sem loja de aplicativos. Ele abre como um app, recebe atualizações automaticamente e, no celular, pode enviar notificações quando a pessoa autoriza. O uso sem internet depende de cada projeto.';
+
 function organizeSubcategories(projects: Project[], catalog: ProjectSubcategory[] = []): SubcategoryGroup[] {
   const meta = new Map(catalog.map((item) => [item.label, item]));
   const seen = new Set<string>();
@@ -83,11 +86,14 @@ function ProjectCard({ project }: { project: Project }) {
 
         {project.highlights && project.highlights.length > 0 && (
           <details className="mb-6 rounded-xl border border-slate-800 bg-white/[0.02] px-4 py-3 group/detalhes">
-            <summary className="cursor-pointer text-sm font-medium text-sky-400 hover:text-sky-300 flex items-center justify-between gap-2 list-none [&::-webkit-details-marker]:hidden [&::marker]:hidden">
+            <summary className="cursor-pointer text-sm font-medium text-sky-400 hover:text-sky-300 flex items-center justify-between gap-2 min-h-11 list-none [&::-webkit-details-marker]:hidden [&::marker]:hidden">
               Detalhes técnicos
               <ChevronDown className="w-4 h-4 shrink-0 transition-transform duration-200 group-open/detalhes:rotate-180" />
             </summary>
-            <ul className="mt-3 space-y-2.5 text-sm text-slate-400 leading-relaxed list-disc pl-4">
+            <p className="mt-3 text-sm text-slate-400 leading-relaxed">
+              {PWA_NOTA}
+            </p>
+            <ul className="mt-3 space-y-2.5 text-sm text-slate-400 leading-relaxed list-disc pl-4 break-words">
               {project.highlights.map((item) => (
                 <li key={item}>{item}</li>
               ))}
